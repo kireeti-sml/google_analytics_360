@@ -14,7 +14,7 @@ include: "session_goals.view.lkml"
 
 view: ga_sessions {
   view_label: "Session"
-  sql_table_name: `@{SCHEMA_NAME}.@{GA360_TABLE_NAME}` ;;
+  sql_table_name: `optical-legend-400205.Google_Analytics_360.ga_session_*` ;;
   extends: [
     calendar,
     geonetwork,

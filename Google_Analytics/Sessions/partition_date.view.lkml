@@ -20,7 +20,7 @@ view: ga_sessions_partition_date {
 
   # Scenario 1 (S1): You are viewing a single GA 360 property
   # Single property
-    sql_table_name: `@{SCHEMA_NAME}.@{GA360_TABLE_NAME}` ;;
+    sql_table_name: `optical-legend-400205.Google_Analytics_360.ga_session_*` ;;
 
     dimension_group: partition {
       # Date that is parsed from the table name. Required as a filter to avoid accidental massive queries
