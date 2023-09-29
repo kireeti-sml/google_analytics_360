@@ -1,4 +1,4 @@
-connection: "@{CONNECTION_NAME}"
+connection: "analytics_champs"
 
 # include: "/datagroups.lkml"
 include: "/*/*.view.lkml"

@@ -39,7 +39,7 @@ view: ga_sessions {
           , COALESCE(CAST(${visit_id} AS STRING),'')
           , '|'
           , CAST(${partition_date} AS STRING)
-          --, CAST(PARSE_DATE('%Y%m%d', REGEXP_EXTRACT(_TABLE_SUFFIX,r'^\d\d\d\d\d\d\d\d')) AS STRING)
+          --, CAST(PARSE_DATE('%Y%m%d', REGEXP_EXTRACT(date,r'^\d\d\d\d\d\d\d\d')) AS STRING)
         ) ;;
   }
 

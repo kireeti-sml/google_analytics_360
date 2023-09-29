@@ -49,7 +49,7 @@ view: ga_sessions_partition_date {
               PARSE_DATE(
                 '%Y%m%d'
                   , REGEXP_EXTRACT(
-                    _TABLE_SUFFIX
+                    date
                       , r'^\d\d\d\d\d\d\d\d'
                   )
               )
@@ -69,13 +69,13 @@ view: ga_sessions_partition_date {
   # #   TODO: Uncomment the sql_table_name and update the FROM statement and property nickname
   #   sql_table_name:
   #   (
-  #     SELECT *, 'Property1' as property, TIMESTAMP(PARSE_DATE('%Y%m%d', REGEXP_EXTRACT(_TABLE_SUFFIX,r'^\d\d\d\d\d\d\d\d'))) AS partition_date
+  #     SELECT *, 'Property1' as property, TIMESTAMP(PARSE_DATE('%Y%m%d', REGEXP_EXTRACT(date,r'^\d\d\d\d\d\d\d\d'))) AS partition_date
   #     FROM `@{SCHEMA_NAME}.@{GA360_TABLE_NAME}`
-  #     WHERE {% condition partition_filter %} TIMESTAMP(PARSE_DATE('%Y%m%d', REGEXP_EXTRACT(_TABLE_SUFFIX,r'^\d\d\d\d\d\d\d\d'))) {% endcondition %}
+  #     WHERE {% condition partition_filter %} TIMESTAMP(PARSE_DATE('%Y%m%d', REGEXP_EXTRACT(date,r'^\d\d\d\d\d\d\d\d'))) {% endcondition %}
   #     UNION ALL
-  #     SELECT *, 'Property2' as property, TIMESTAMP(PARSE_DATE('%Y%m%d', REGEXP_EXTRACT(_TABLE_SUFFIX,r'^\d\d\d\d\d\d\d\d'))) AS partition_date
+  #     SELECT *, 'Property2' as property, TIMESTAMP(PARSE_DATE('%Y%m%d', REGEXP_EXTRACT(date,r'^\d\d\d\d\d\d\d\d'))) AS partition_date
   #     FROM `@{SCHEMA_NAME}.@{GA360_TABLE_NAME}`
-  #     WHERE {% condition partition_filter %} TIMESTAMP(PARSE_DATE('%Y%m%d', REGEXP_EXTRACT(_TABLE_SUFFIX,r'^\d\d\d\d\d\d\d\d'))) {% endcondition %}
+  #     WHERE {% condition partition_filter %} TIMESTAMP(PARSE_DATE('%Y%m%d', REGEXP_EXTRACT(date,r'^\d\d\d\d\d\d\d\d'))) {% endcondition %}
   #   );;
 
 

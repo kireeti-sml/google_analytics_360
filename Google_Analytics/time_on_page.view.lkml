@@ -6,7 +6,7 @@
 
 
 view: time_on_page {
-  
+
   derived_table: {
     persist_for: "1 hour"
     sql:
@@ -15,7 +15,7 @@ view: time_on_page {
           CONCAT(
             CAST(fullVisitorId AS STRING), '|'
             , COALESCE(CAST(visitId AS STRING),''), '|'
-            , CAST(PARSE_DATE('%Y%m%d', REGEXP_EXTRACT(_TABLE_SUFFIX,r'^\d\d\d\d\d\d\d\d')) AS STRING)
+            , CAST(PARSE_DATE('%Y%m%d', REGEXP_EXTRACT(date,r'^\d\d\d\d\d\d\d\d')) AS STRING)
           ) AS session_id
           , fullVisitorId as full_visitor_id
           , visitStartTime as visit_start_time
@@ -32,7 +32,7 @@ view: time_on_page {
             ) OVER (PARTITION BY fullVisitorId, visitStartTime) AS last_event
         FROM ${ga_sessions.SQL_TABLE_NAME} AS ga_sessions
         LEFT JOIN UNNEST(ga_sessions.hits) AS hits
-        WHERE {% condition ga_sessions.partition_date %} TIMESTAMP(PARSE_DATE('%Y%m%d', REGEXP_EXTRACT(_TABLE_SUFFIX,r'^\d\d\d\d\d\d\d\d'))) {% endcondition %}
+        WHERE {% condition ga_sessions.partition_date %} TIMESTAMP(PARSE_DATE('%Y%m%d', REGEXP_EXTRACT(date,r'^\d\d\d\d\d\d\d\d'))) {% endcondition %}
       )
       , pages AS (
           SELECT
